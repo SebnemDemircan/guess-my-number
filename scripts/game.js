@@ -1,6 +1,7 @@
 class Game {
     constructor() {
         this.Setup();
+        this.SoundsManager = new SoundsManager();
     }
 
     Setup() {
@@ -10,6 +11,10 @@ class Game {
         this.message = Strings.START_GUESSING_TEXT;
         this.state = States.UNDEFINED;
         this.hasHighscored = this.score > this.highscore;
+    }
+
+    PlaySound(sound) {
+        this.SoundsManager.Play(sound);
     }
     
     CheckGuess(guess) {

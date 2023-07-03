@@ -7,6 +7,7 @@ const displayMessage = function(message){
 }
 
 const onRestartPressed = function() {
+    game.PlaySound(SFX.GAME_START);
     game.Restart();
 
     displayMessage(game.message);
@@ -27,13 +28,15 @@ const onGuessPressed = function() {
 
     switch (game.state) {
         case States.NO_INPUT:
-            // no extra opts
+            game.PlaySound(SFX.ERROR);
             break;
         case States.TOO_HIGH:
         case States.TOO_LOW:
                 document.querySelector('.score').textContent = game.score;
+            game.PlaySound(SFX.POP);
             break;
         case States.PLAYER_WINS:
+            game.PlaySound(SFX.PLAYER_WINS);
             document.querySelector('.number').textContent = game.secretNumber;
             document.querySelector('body').style.backgroundColor = '#60b347';
             document.querySelector('.number').style.width = '30rem';
@@ -43,6 +46,7 @@ const onGuessPressed = function() {
             }
             break;
         case States.PLAYER_LOSTS:
+            game.PlaySound(SFX.PLAYER_LOSTS);
             document.querySelector('.score').textContent = 0;
             break;
         case States.UNDEFINED:
